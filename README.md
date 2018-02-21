@@ -1,2 +1,2 @@
-# connectXGame
+# ConnectXGame
 ConnectXGame
