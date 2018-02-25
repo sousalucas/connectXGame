@@ -5,7 +5,7 @@ class Board
   end
 
   def totalPositions
-    puts "Total is #{@columns*@rows}"
+    return @columns*@rows
   end
 
   def draw(contentArray = [])
@@ -20,7 +20,7 @@ class Board
       puts
       j=0
       while j < @columns
-        if contentArray[i*k]
+        if contentArray.include? (i*10)+k
           print '| o |'
         else
           print '|   |'
