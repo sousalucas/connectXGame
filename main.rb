@@ -1,18 +1,18 @@
 require './game'
-require './board'
-require './human'
-require './computer'
 
 system 'clear'
 
 game = Game.new
-game.start
+game.prepareGame
 
-b = Board.new(4,4)
-#
-# system 'clear'
+while not false
+  system 'clear'
+  game.drawBoard
+  game.play
+end
+
+
 # puts "Total Board Positions: " + "#{b.totalPositions}"
-b.draw([])
 
 
 # player = Player.new

@@ -8,7 +8,7 @@ class Board
     return @columns*@rows
   end
 
-  def draw(contentArray = [])
+  def draw(contentArray = [], symbol)
     i=0
     while i < @rows
       j=0
@@ -21,7 +21,7 @@ class Board
       j=0
       while j < @columns
         if contentArray.include? (i*10)+k
-          print '| o |'
+          print '| ' + symbol + ' |'
         else
           print '|   |'
         end

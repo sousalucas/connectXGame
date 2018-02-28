@@ -1,11 +1,19 @@
+require './human'
+require './computer'
+require './board'
+
 class Game
 
   GAME_TYPE_CONST = [1,2,3]
 
+  @@plays = Hash.new
+  @@players = Array.new
+  @@board = Board.new(4,4)
+
   def initialize
   end
 
-  def start
+  def prepareGame
     puts
     puts " *** Welcome to Connect X Game ***"
     puts
@@ -18,7 +26,17 @@ class Game
     gameType = gets.to_i
 
     if(GAME_TYPE_CONST.include? gameType)
-      return gameType
+      case gameType
+      when 1
+        self.addPlayer(Human.new('H1', 'o'))
+        self.addPlayer(Computer.new('C1', 'x'))
+      when 2
+        self.addPlayer(Human.new)
+        self.addPlayer(Human.new)
+      when 3
+        self.addPlayer(Computer.new)
+        self.addPlayer(Computer.new)
+      end
     elsif gameType == 0
       exit!
     else
@@ -26,12 +44,35 @@ class Game
       puts "Invalid Option (press any button)"
       gets
       system 'clear'
-      self.start
+      self.prepareGame
     end
   end
 
-  def totalPositions
-    puts "invalido"
+  def addPlayer(player)
+    @@players << player
+  end
+
+  def play
+    @@players.each do |p|
+      pp = p.play
+      # while @@plays.contains? pp
+      #   puts "Invalid Play, try again..."
+      #   pp = p.play
+      # end
+      @@plays.['s'] << p.getSymbol
+    end
+  end
+
+  def drawBoard
+    @@board.draw(@@plays)
+  end
+
+  def checkGame(plays)
+    @@board.draw(plays)
+  end
+
+  def addPlay(play)
+    @@plays << play
   end
 
 end
