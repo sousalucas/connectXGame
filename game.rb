@@ -55,11 +55,11 @@ class Game
   def play
     @@players.each do |p|
       pp = p.play
-      # while @@plays.contains? pp
-      #   puts "Invalid Play, try again..."
-      #   pp = p.play
-      # end
-      @@plays.['s'] << p.getSymbol
+      while checkPlayExists(pp)
+        puts "Invalid Play, try again..."
+        pp = p.play
+      end
+      self.addPlay(pp, p.getSymbol)
     end
   end
 
@@ -67,12 +67,16 @@ class Game
     @@board.draw(@@plays)
   end
 
-  def checkGame(plays)
-    @@board.draw(plays)
+  def checkEndGame()
+    return false
   end
 
-  def addPlay(play)
-    @@plays << play
+  def addPlay(play, symbol)
+    @@plays[play] = symbol
+  end
+
+  def checkPlayExists(play)
+    @@plays.key?(play)
   end
 
 end

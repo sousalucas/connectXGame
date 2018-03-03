@@ -5,7 +5,7 @@ system 'clear'
 game = Game.new
 game.prepareGame
 
-while not false
+while not game.checkEndGame
   system 'clear'
   game.drawBoard
   game.play
