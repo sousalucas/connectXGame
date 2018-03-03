@@ -4,11 +4,19 @@ class Board
     @rows = rows
   end
 
+  def totalColumns
+    return @columns
+  end
+
+  def getLines
+    return @rows
+  end
+
   def totalPositions
     return @columns*@rows
   end
 
-  def draw(contentArray = [], symbol)
+  def draw(playsHash)
     i=0
     while i < @rows
       j=0
@@ -20,8 +28,9 @@ class Board
       puts
       j=0
       while j < @columns
-        if contentArray.include? (i*10)+k
-          print '| ' + symbol + ' |'
+        currentPosition = ((i*10)+k)
+        if playsHash.key?(currentPosition)
+          print '| ' + playsHash[currentPosition] + ' |'
         else
           print '|   |'
         end
