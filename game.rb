@@ -31,11 +31,11 @@ class Game
         self.addPlayer(Human.new('H1', 'o'))
         self.addPlayer(Computer.new('C1', 'x'))
       when 2
-        self.addPlayer(Human.new)
-        self.addPlayer(Human.new)
+        self.addPlayer(Human.new('H1', 'o'))
+        self.addPlayer(Human.new('H2', 'x'))
       when 3
-        self.addPlayer(Computer.new)
-        self.addPlayer(Computer.new)
+        self.addPlayer(Computer.new('C1', 'o'))
+        self.addPlayer(Computer.new('C2', 'x'))
       end
     elsif gameType == 0
       exit!
@@ -55,7 +55,7 @@ class Game
   def play
     @@players.each do |p|
       pp = p.play
-      while checkPlayExists(pp)
+      while (not isValidPlay(pp))
         puts "Invalid Play, try again..."
         pp = p.play
       end
@@ -67,16 +67,33 @@ class Game
     @@board.draw(@@plays)
   end
 
-  def checkEndGame()
-    return false
-  end
-
   def addPlay(play, symbol)
     @@plays[play] = symbol
   end
 
+  def isValidPlay(play)
+    if (play > 0 and play <= @@board.columns)
+      return true
+    else
+      return false
+    end
+  end
+
+  # def isColumnFull(play)
+  #   if (play > 0 and play <= @@board.columns)
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
+
   def checkPlayExists(play)
     @@plays.key?(play)
   end
+
+  def checkEndGame()
+    return false
+  end
+
 
 end
