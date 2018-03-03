@@ -1,15 +1,10 @@
 class Board
+
+  attr_reader :columns
+
   def initialize(columns, rows)
     @columns = columns
     @rows = rows
-  end
-
-  def totalColumns
-    return @columns
-  end
-
-  def getLines
-    return @rows
   end
 
   def totalPositions
@@ -28,7 +23,7 @@ class Board
       puts
       j=0
       while j < @columns
-        currentPosition = ((i*10)+k)
+        currentPosition = ((i*10)+k+1)
         if playsHash.key?(currentPosition)
           print '| ' + playsHash[currentPosition] + ' |'
         else
