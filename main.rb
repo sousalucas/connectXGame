@@ -5,11 +5,13 @@ system 'clear'
 game = Game.new
 game.prepareGame
 
-while not game.checkEndGame
-  system 'clear'
+while not game.checkEndGame  
   game.drawBoard
   game.play
 end
+
+#game.drawBoard
+puts "END OF GAME!"
 
 
 # puts "Total Board Positions: " + "#{b.totalPositions}"

@@ -13,7 +13,7 @@ class Player
   end
 
   def play
-    puts "Type a column number"
+    puts "#{@name} Type a column number"
     return gets.to_i
   end
 end
