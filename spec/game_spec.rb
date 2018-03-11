@@ -1,20 +1,20 @@
 require './game'
 
-RSpec.describe Board do
-  describe "#check game play" do
-    it "verify if play 1 and 2 is already set" do
+RSpec.describe Game do
+  context "#check game end" do
+    it "verify if game is over" do
       game = Game.new
-      game.addPlay(1, 'x')
       game.addPlay(2, 'x')
-      expect(game.checkPlayExists(1)).to be_truthy
-      expect(game.checkPlayExists(2)).to be_truthy
+      game.addPlay(3, 'y')
+      expect(game.isWinningPlay(4,'x')).to be_falsey
     end
-    it "verify if play 3 and 4 do not exists yet" do
+  end
+  context "#check game not end" do
+    it "vadasd aooad aiaisdr" do
       game = Game.new
-      game.addPlay(1, 'x')
-      game.addPlay(2, 'y')
-      expect(game.checkPlayExists(3)).to be_falsey
-      expect(game.checkPlayExists(4)).to be_falsey
+      game.addPlay(2, 'x')
+      game.addPlay(3, 'x')
+      expect(game.isWinningPlay(4,'x')).to be_truthy
     end
   end
 end
