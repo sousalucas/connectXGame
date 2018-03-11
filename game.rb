@@ -112,7 +112,7 @@ class Game
       end
     end
 
-    if total == (GAME_NUMBER_CONNECT - 1)
+    if total >= (GAME_NUMBER_CONNECT - 1)
       @board.winningPlay = play
       return @endGame = @hasWinner = true
     end
@@ -125,7 +125,7 @@ class Game
       end
     end
 
-    if total == (GAME_NUMBER_CONNECT - 1)
+    if total >= (GAME_NUMBER_CONNECT - 1)
       @board.winningPlay = play
       return @endGame = @hasWinner = true
     end
@@ -139,7 +139,7 @@ class Game
       end
     end
 
-    if total == (GAME_NUMBER_CONNECT - 1)
+    if total >= (GAME_NUMBER_CONNECT - 1)
       @board.winningPlay = play
       return @endGame = @hasWinner = true
     end
@@ -153,7 +153,7 @@ class Game
       end
     end
 
-    if total == (GAME_NUMBER_CONNECT - 1)
+    if total >= (GAME_NUMBER_CONNECT - 1)
       @board.winningPlay = play
       return @endGame = @hasWinner = true
     end
@@ -166,7 +166,7 @@ class Game
       end
     end
 
-    if total == (GAME_NUMBER_CONNECT - 1)
+    if total >= (GAME_NUMBER_CONNECT - 1)
       @board.winningPlay = play
       return @endGame = @hasWinner = true
     end
