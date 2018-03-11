@@ -12,7 +12,7 @@ end
 
 game.drawBoard
 
-if(game.winner)
+if(game.hasWinner)
   puts 'WINNER !!!'
 else
   puts 'Tied !'
