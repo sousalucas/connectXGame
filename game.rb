@@ -4,6 +4,9 @@ require './board'
 
 class Game
 
+  attr_reader :endGame
+  attr_reader :winner
+
   GAME_TYPE_CONST     = [1,2,3]
   GAME_NUMBER_CONNECT = 3
 
@@ -12,6 +15,8 @@ class Game
   @@board = Board.new(4,4)
 
   def initialize
+    @endGame = false
+    @winner = false
   end
 
   def prepareGame
@@ -63,8 +68,9 @@ class Game
         play = getSpotAvaiableByColumn(column)
       end
       self.addPlay(play, p.getSymbol)
+      break if self.isWinningPlay(play, p.getSymbol)
+      break if self.isFullBoard
       self.drawBoard
-      break if self.checkEndGame
     end
   end
 
@@ -86,26 +92,89 @@ class Game
   end
 
   def getSpotAvaiableByColumn(column)
-
     [*0...@@board.rows].reverse_each do |r|
       play = column + (r * 10);
-
       if not @@plays.key?(play)
         return play
       end
-
     end
-
     return -1
-
   end
 
-  def checkEndGame()
-    if ((@@board.rows * @@board.columns) == @@plays.length)
-      return true
+  def isWinningPlay(play, symbol)
+    #check next plays
+    total = 0;
+    [*1...GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+searchPlay
+      if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
+        total += 1
+      end
     end
+
+    if total == (GAME_NUMBER_CONNECT - 1)
+      return @endGame = @winner = true
+    end
+
+    #check previous plays
+    total = 0;
+    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play-searchPlay
+      if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
+        total += 1
+      end
+    end
+
+    if total == (GAME_NUMBER_CONNECT - 1)
+      return @endGame = @winner = true
+    end
+
+    #check top plays
+    total = 0;
+    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+(searchPlay*10)
+      if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
+        total += 1
+      end
+    end
+
+    if total == (GAME_NUMBER_CONNECT - 1)
+      return @endGame = @winner = true
+    end
+
+    #check diagonal 1 plays
+    total = 0;
+    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+(searchPlay*10)+searchPlay
+      if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
+        total += 1
+      end
+    end
+
+    if total == (GAME_NUMBER_CONNECT - 1)
+      return @endGame = @winner = true
+    end
+
+    #check diagonal 2 plays
+    total = 0;
+    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+(searchPlay*10)-searchPlay
+      if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
+        total += 1
+      end
+    end
+
+    if total == (GAME_NUMBER_CONNECT - 1)
+      return @endGame = @winner = true
+    end
+
     return false
+
   end
 
+  def isFullBoard()
+    if ((@@board.rows * @@board.columns) == @@plays.length)
+      @endGame = true
+    end
+  end
 
 end
