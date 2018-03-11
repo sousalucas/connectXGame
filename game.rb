@@ -117,7 +117,7 @@ class Game
 
     #check previous plays
     total = 0;
-    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+    [*1...GAME_NUMBER_CONNECT].each do |searchPlay|
       searchKey = play-searchPlay
       if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
         total += 1
@@ -125,12 +125,13 @@ class Game
     end
 
     if total == (GAME_NUMBER_CONNECT - 1)
+      abort
       return @endGame = @winner = true
     end
 
     #check top plays
     total = 0;
-    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
+    [*1...GAME_NUMBER_CONNECT].each do |searchPlay|
       searchKey = play+(searchPlay*10)
       if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
         total += 1
@@ -143,8 +144,8 @@ class Game
 
     #check diagonal 1 plays
     total = 0;
-    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
-      searchKey = play+(searchPlay*10)+searchPlay
+    [*1...GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+((searchPlay*10)+searchPlay)
       if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
         total += 1
       end
@@ -156,8 +157,8 @@ class Game
 
     #check diagonal 2 plays
     total = 0;
-    [*1..GAME_NUMBER_CONNECT].each do |searchPlay|
-      searchKey = play+(searchPlay*10)-searchPlay
+    [*1...GAME_NUMBER_CONNECT].each do |searchPlay|
+      searchKey = play+((searchPlay*10)-searchPlay)
       if @@plays.key?(searchKey) and @@plays[searchKey] == symbol
         total += 1
       end
