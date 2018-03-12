@@ -109,6 +109,8 @@ class Game
       searchKey = play+searchPlay
       if @plays.key?(searchKey) and @plays[searchKey] == symbol
         total += 1
+      else
+        break
       end
     end
 
@@ -122,6 +124,8 @@ class Game
       searchKey = play-searchPlay
       if @plays.key?(searchKey) and @plays[searchKey] == symbol
         total += 1
+      else
+        break
       end
     end
 
@@ -136,6 +140,8 @@ class Game
       searchKey = play+(searchPlay*@board.factor)
       if @plays.key?(searchKey) and @plays[searchKey] == symbol
         total += 1
+      else
+        break
       end
     end
 
@@ -150,6 +156,8 @@ class Game
       searchKey = play+((searchPlay*@board.factor)+searchPlay)
       if @plays.key?(searchKey) and @plays[searchKey] == symbol
         total += 1
+      else
+        break
       end
     end
 
@@ -163,6 +171,8 @@ class Game
       searchKey = play+((searchPlay*@board.factor)-searchPlay)
       if @plays.key?(searchKey) and @plays[searchKey] == symbol
         total += 1
+      else
+        break
       end
     end
 
